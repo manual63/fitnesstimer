@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+    var data = {
+      "moves" : [
+        {
+          "name" : "UGI Roll",
+          "type" : "Warmup"
+        },
+        {
+          "name" : "Clocks",
+          "type" : "Warmup"
+        },
+        {
+          "name" : "Knee Ups",
+          "type" : "Warmup"
+        },
+        {
+          "name" : "UGI Swing",
+          "type" : "Warmup"
+        },
+        {
+          "name" : "Alternating Side Lunge",
+          "type" : "Warmup"
+        },
+        {
+          "name" : "Low Squat Pivot",
+          "type" : "Warmup"
+        },
+        {
+          "name" : "Reverse Curl",
+          "type" : "Core"
+        },
+        {
+          "name" : "Single Leg V Up",
+          "type" : "Core"
+        },
+        {
+          "name" : "Ugi Twist",
+          "type" : "Core"
+        },
+        {
+          "name" : "Tricep Dips",
+          "type" : "Strength"
+        },
+        {
+          "name" : "Balancing Side Leg Lift",
+          "type" : "Strength"
+        },
+        {
+          "name" : "Push Ups Right/Left",
+          "type" : "Strength"
+        },
+        {
+          "name" : "UGI Squeeze",
+          "type" : "Strength"
+        },
+        {
+          "name" : "Deadlift",
+          "type" : "Strength"
+        },
+        {
+          "name" : "Jump Squat + Shoulder Press",
+          "type" : "Strength"
+        },
+        {
+          "name" : "Plie Squat Bicep Curl",
+          "type" : "Strength"
+        },
+        {
+          "name" : "Soccer Throw Ins",
+          "type" : "Strength"
+        },
+        {
+          "name" : "Right Balancing Side Crunch",
+          "type" : "Core"
+        },
+        {
+          "name" : "Accordion Crunch",
+          "type" : "Core"
+        },
+        {
+          "name" : "Left Balancing Side Crunch",
+          "type" : "Core"
+        }
+      ]
+    }
+    var ugitimer = {};
+
+    ugitimer.starttime = 1;
+    ugitimer.data = data;
+    ugitimer.startIndex = 0;
+    ugitimer.timer;
+
+    ugitimer.nextMove = function() {
+      $( '.timer' ).html( ugitimer.starttime++ );
+      if( ugitimer.starttime === 51 ) {
+        ugitimer.startIndex++;
+        if( ugitimer.startIndex < ugitimer.data.moves.length ) {
+          $( '.next-move' ).html( ugitimer.data.moves[ ugitimer.startIndex ].type + ' - ' + ugitimer.data.moves[ ugitimer.startIndex ].name );
+        }
+      }
+
+      if( ugitimer.starttime === 61 ) {
+        ugitimer.starttime = 1;
+      }
+    }
+
+    ugitimer.preTimer = function() {
+      ugitimer.timer = setInterval( 'ugitimer.updatePretimer()', 1000 );
+    }
+
+    ugitimer.updatePretimer = function() {
+      $( '.timer' ).html( ugitimer.starttime++ );
+      if( ugitimer.starttime > 21 ) {
+        ugitimer.starttime = 1;
+        clearInterval( ugitimer.timer );
+        $( '.timer' ).html( ugitimer.starttime );
+        ugitimer.startTimer();
+        $( '.start-pretimer' ).addClass( '.start-timer' ).removeClass( '.start-pretimer' );
+        $( '.start-timer' ).on( 'click', function() {
+          ugitimer.startTimer();
+        });
+      }
+    }
+
+    ugitimer.startTimer = function() {
+      ugitimer.timer = setInterval( 'ugitimer.nextMove()', 1000 );
+    }
+
+    ugitimer.stopTimer = function() {
+      clearInterval( ugitimer.timer );
+    }
+
+    ugitimer.getClassFormat = function() {
+      var classFormat = $( '.select-class select' ).val();
+      console.log( classFormat );
+      $.getJSON( 'classes/' + classFormat + '.json', function( data ) {
+        console.log( data );
+        ugitimer.data = data;
+        $( '.next-move' ).html( ugitimer.data.moves[0].type + ' - ' + ugitimer.data.moves[0].name );
+      });
+    }
+
+    $(function() {
+      $( '.start-pretimer' ).on( 'click', function() {
+        ugitimer.preTimer();
+      });
+
+      $( '.stop-timer' ).on( 'click', function() {
+        ugitimer.stopTimer();
+      });
+
+      ugitimer.getClassFormat();
+
+      $( '.select-class select' ).on( 'change', function() {
+        ugitimer.getClassFormat();
+      });
+    });
+
+
+    </script>
+    <style>
+      body {
+        font-size:40px;
+      }
+      .container {
+        width:85%;
+        margin:auto;
+      }
+
+      .moves {
+        font-size:1.6em;
+        text-align:center;
+      }
+
+      .timer {
+        font-size:5em;
+        text-align:center;
+        margin-top:.1em;
+      }
+
+      .controls {
+        text-align: center;
+        margin-top:.5em;
+      }
+
+      .controls button {
+        font-size:1.1em;
+        padding:.3em;
+      }
+
+      .select-class {
+        text-align:center;
+        margin:0;
+        padding:0;
+        
+      }
+
+      .select-class select {
+        font-size:0.5em;
+      }
+
+      .select-class label {
+        margin-right:0.3em;
+        font-size:0.5em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="select-class">
+        <label>Class Format:</label>
+        <select>
+          <option value="ugi-cycle20-one">Ugi Cycle 20 Mins</option>
+          <option value="ugi-30-one">Ugi 30 Mins 1</option>
+          <option value="ugi-30-two">Ugi 30 Mins 2</option>
+          <option value="ugi-27-mia-one">Ugi 27 Mins Mia 1</option>
+        </select>
+      </div>
+      <div class="moves">
+        <span class="next-move"></span>
+      </div>
+      <div class="timer">1</div>
+      <div class="controls">
+        <button class="start-pretimer">Start</button><button class="stop-timer">Stop</button>
+      </div>
+    </div>
+  </body>
+</html>
