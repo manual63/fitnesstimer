@@ -1,0 +1,44 @@
+body {
+  font-size:40px;
+}
+.container {
+  width:85%;
+  margin:auto;
+}
+
+.moves {
+  font-size:1.6em;
+  text-align:center;
+}
+
+.timer {
+  font-size:5em;
+  text-align:center;
+  margin-top:.1em;
+}
+
+.controls {
+  text-align: center;
+  margin-top:.5em;
+}
+
+.controls button {
+  font-size:1.1em;
+  padding:.3em;
+}
+
+.select-class {
+  text-align:center;
+  margin:0;
+  padding:0;
+  
+}
+
+.select-class select {
+  font-size:0.5em;
+}
+
+.select-class label {
+  margin-right:0.3em;
+  font-size:0.5em;
+}
