@@ -2,7 +2,6 @@ var AppRouter = Backbone.Router.extend({
   routes: { 
     "timer*params": "timerView",
     "*params":"homeView"
-    
   },
   timerView: function(params) {
     Global.functions.clearView();
@@ -24,5 +23,4 @@ var AppRouter = Backbone.Router.extend({
       }
     });	   
   }
-  
 });
