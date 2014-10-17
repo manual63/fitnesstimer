@@ -5,7 +5,10 @@
         <group>
             <file>file:/D:/Documents/FitnessTimer/HTML5Application/public_html/index.html</file>
             <file>file:/D:/Documents/FitnessTimer/HTML5Application/public_html/src/less/controls.less</file>
+            <file>file:/D:/Documents/FitnessTimer/HTML5Application/public_html/src/js/TimerView.js</file>
             <file>file:/D:/Documents/FitnessTimer/HTML5Application/public_html/src/js/timer.js</file>
+            <file>file:/D:/Documents/FitnessTimer/HTML5Application/public_html/data/home.json</file>
+            <file>file:/D:/Documents/FitnessTimer/HTML5Application/public_html/data/timer.json</file>
             <file>file:/D:/Documents/FitnessTimer/HTML5Application/public_html/src/less/timer.less</file>
             <file>file:/D:/Documents/FitnessTimer/HTML5Application/public_html/src/js/main.js</file>
         </group>

@@ -23,41 +23,49 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
+        <script id="home-template" type="text/x-handlebars-template">
+         <h2>{{title}}</h2>
+         <div>{{{description}}}</div>
+         <div><button id="timerView">Go To Timer</button></div>
+       </script>
+        <script id="timer-template" type="text/x-handlebars-template">
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="classFormat">Format</label>
+                            <select id="classFormat" class="form-control">
+                                <option value="none">Select a format</option>
+                                <option value="ugi-cycle20-one">Ugi Cycle 20 Mins 1</option>
+                                <option value="ugi-cycle20-two">Ugi Cycle 20 Mins 2</option>
+                                <option value="ugi-30-one">Ugi 30 Mins 1</option>
+                                <option value="ugi-30-two">Ugi 30 Mins 2</option>
+                                <option value="ugi-27-mia-one">Ugi 27 Mins Mia 1</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="moves text-center">
+                      <span class="next-move">Select A Format</span>
+                    </div>
+                    <div class="timer text-center">1</div>
+                    <div class="controls btn-block text-center">
+                      <button class="btn btn-primary start-pretimer">Start</button><button class="btn btn-danger stop-timer">Stop</button>
+                    </div>
+                </div>
+            </div>
+       </script>
         <div class="container">
             <header class="site row">
                 <div class="col-md-12">
                     <h1>Fitness Timer</h1>
                 </div>
             </header>
-            <div class="main-content">
-                <div class="row">
-                    <div class="col-md-offset-4 col-md-4">
-                        <form role="form">
-                            <div class="form-group">
-                                <label for="classFormat">Format</label>
-                                <select id="classFormat" class="form-control">
-                                    <option value="none">Select a format</option>
-                                    <option value="ugi-cycle20-one">Ugi Cycle 20 Mins 1</option>
-                                    <option value="ugi-cycle20-two">Ugi Cycle 20 Mins 2</option>
-                                    <option value="ugi-30-one">Ugi 30 Mins 1</option>
-                                    <option value="ugi-30-two">Ugi 30 Mins 2</option>
-                                    <option value="ugi-27-mia-one">Ugi 27 Mins Mia 1</option>
-                                </select>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="moves text-center">
-                          <span class="next-move">Select A Format</span>
-                        </div>
-                        <div class="timer text-center">1</div>
-                        <div class="controls btn-block text-center">
-                          <button class="btn btn-primary start-pretimer">Start</button><button class="btn btn-danger stop-timer">Stop</button>
-                        </div>
-                    </div>
-                </div>
+            <div id="content" class="main-content">
+
             </div>
             <footer class="site">
                 &copy; Modular Integration All Rights Reserved
@@ -65,8 +73,11 @@
         </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="js/vendor/underscore.js/underscore.js"></script>
+        <script src="js/vendor/handlebars.js/handlebars.js"></script>
+        <script src="js/vendor/backbone.js/backbone.js"></script>
         <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
+        <script src="js/main.min.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>
