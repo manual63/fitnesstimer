@@ -6,17 +6,29 @@ var Global = {
     highlightNav: function(navObj) {
       $('nav ul li a').removeClass('active');
       $(navObj).addClass('active');
+    },
+    getTemplate: function( template ) {
+        var html = null;
+        $.ajax({
+            type: "GET",
+            url: 'templates/' + template,
+            async: false,
+            cache: false
+        }).done( function( data ) {
+            html = data;
+        });
+        return html;
     }
   }
 };
 
 var homeTemplate = null;
 $(function() {
-  var source   = $("#home-template").html();
-   homeTemplate = Handlebars.compile(source);
+  var source   = Global.functions.getTemplate( 'home.html' );
+  homeTemplate = Handlebars.compile( source );
 
-  var source   = $("#timer-template").html();
-   timerTemplate = Handlebars.compile(source);
+  var source   = Global.functions.getTemplate( 'timer.html' );
+  timerTemplate = Handlebars.compile( source );
 });
 
 // Initiate the router
