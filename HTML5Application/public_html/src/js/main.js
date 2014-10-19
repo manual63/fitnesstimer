@@ -23,6 +23,7 @@ var Global = {
 };
 
 var homeTemplate = null;
+var timerTemplate = null;
 $(function() {
   var source   = Global.functions.getTemplate( 'home.html' );
   homeTemplate = Handlebars.compile( source );

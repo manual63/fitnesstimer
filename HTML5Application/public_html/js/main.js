@@ -55,7 +55,8 @@ var Home = Backbone.Model.extend({
           $.getJSON( 'classes/' + classFormat + '.json', function( data ) {
             console.log( data );
             that.data = data;
-            $( '.next-move' ).html( that.data.moves[0].type + ' - ' + that.data.moves[0].name );
+            that.showMove( that.data.moves[0].type, that.data.moves[0].name);
+            
           });
         }
         else $( '.next-move' ).html( 'No Format Selected' );
@@ -81,7 +82,7 @@ var Home = Backbone.Model.extend({
         if( this.startTime === 51 ) {
           that.startIndex++;
           if( that.startIndex < that.data.moves.length ) {
-            $( '.next-move' ).html( that.data.moves[ that.startIndex ].type + ' - ' + that.data.moves[ that.startIndex ].name );
+            that.showMove( that.data.moves[ that.startIndex ].type, that.data.moves[ that.startIndex ].name);
             $( '.next-move' ).addClass( 'blink_me' );
           }
         }
@@ -113,10 +114,14 @@ var Home = Backbone.Model.extend({
           $.getJSON( 'classes/' + classFormat + '.json', function( data ) {
             console.log( data );
             that.data = data;
-            $( '.next-move' ).html( that.data.moves[0].type + ' - ' + that.data.moves[0].name );
+            that.showMove( that.data.moves[0].type, that.data.moves[0].name);
           });
         }
         else $( '.next-move' ).html( 'No Format Selected' );
+     },
+     showMove: function(type, move) {
+         $( '.move-type' ).html( type );
+         $( '.next-move' ).html( move );
      }
 });
 
@@ -170,6 +175,7 @@ var Home = Backbone.Model.extend({
 };
 
 var homeTemplate = null;
+var timerTemplate = null;
 $(function() {
   var source   = Global.functions.getTemplate( 'home.html' );
   homeTemplate = Handlebars.compile( source );
