@@ -1,0 +1,4 @@
+{
+    "title": "Welcome to the Fitness Timer!",
+    "description": "<p>This timer was written by a fitness professional for fitness professionals. It covers standard 60 second intervals for each move with a 10 second advance notice of next move. It also supports HIIT style timing.</p><p>So why was this web applicaiton created? Because most timers only show the instructor the countdown and don't help them with the fitness class format. This timer will allow fitness professionals to customize their class format to be displayed in the view as each move needs to be performed.</p><p>This takes the pressure off of the instructor so they can focus on the class and not remember their format.</p>"
+}
