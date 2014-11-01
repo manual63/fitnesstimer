@@ -1,6 +1,6 @@
 #Ignore the following files and directories when committing to repository
 
 HTML5Application/nbproject/
-HTML5Application/node_modules/
+HTML5Application/public_html/node_modules/
 HTML5Application/.htaccess
 test/
