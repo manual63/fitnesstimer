@@ -1,0 +1,124 @@
+  {
+    "moves" : [
+      {
+        "name" : "UGI ROLL",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "SKATERS ",
+        "type" : "Strength"
+      },
+      {
+        "name" : "JACK SQUATS",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "KNEE UPS",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "CLOCKS",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "FROGGIES",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "ROCKING PLANK",
+        "type" : "Core"
+      },
+      {
+        "name" : "STANDING OVERHEAD THROWS",
+        "type" : "Strength"
+      },
+      {
+        "name" : "JUMPING UGI TWIST",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "DEAD LIFT",
+        "type" : "Strength"
+      },
+      {
+        "name" : "BALANCING SIDE LEG LIFT R",
+        "type" : "Strength"
+      },
+      {
+        "name" : "BALANCING SIDE LEG LIFT L",
+        "type" : "Strength"
+      },
+      {
+        "name" : "ALT JUMP LUNGE",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "PLANK JACKS",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "SINGLE LEG V-UPS",
+        "type" : "Core"
+      },
+      {
+        "name" : "90 CRUNCH",
+        "type" : "Core"
+      },
+      {
+        "name" : "HAMSTRING CURL",
+        "type" : "Strength"
+      },
+      {
+        "name" : "SIDE PLANK HIP DIPS",
+        "type" : "Core"
+      },
+      {
+        "name" : "ROCKING PIKE",
+        "type" : "Core"
+      },
+      {
+        "name" : "LOWER AB TWIST UP",
+        "type" : "Core"
+      },
+      {
+        "name" : "ALT. ONE HANDED UGI PUSHUPS",
+        "type" : "Strength"
+      },
+      {
+        "name" : "ALT. LUNGE ON BALL",
+        "type" : "Strength"
+      },
+      {
+        "name" : "ALT. LUNGE ON BALL WITH TWIST",
+        "type" : "Strength"
+      },
+      {
+        "name" : "JUMP SQUAT + SHOULDER PRESS",
+        "type" : "Strength"
+      },
+      {
+        "name" : "UGI INNER THIGH SQUEEZE",
+        "type" : "Strength"
+      },
+      {
+        "name" : "ALT. BICEP CURL",
+        "type" : "Strength"
+      },
+      {
+        "name" : "SIDE STRADDLE STRETCH",
+        "type" : "Cooldown"
+      },
+      {
+        "name" : "TRICEP STRETCH",
+        "type" : "Cooldown"
+      },
+      {
+        "name" : "NECK STRETCH",
+        "type" : "Cooldown"
+      },
+      {
+        "name" : "QUAD HIP STRETCH",
+        "type" : "Cooldown"
+      }
+    ]
+  }

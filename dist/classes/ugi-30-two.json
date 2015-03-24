@@ -1,0 +1,124 @@
+  {
+    "moves" : [
+      {
+        "name" : "Clocks (30 sec/side)",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Ugi® Swing",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Skaters",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Pushup Mountain Climbers",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Jack Squat",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Plie Squat + Bicep Curl",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Lateral Toe Taps",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Low Squat Pivot",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Dead Lift",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Burpee Shoulder Press",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Alternating Bicep Curl",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Round the Ugi",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Seated Ugi Twist",
+        "type" : "Core"
+      },
+      {
+        "name" : "Crunch + Chest Press",
+        "type" : "Core"
+      },
+      {
+        "name" : "90° Swivel Crunch",
+        "type" : "Core"
+      },
+      {
+        "name" : "Ugi Tap Downs",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Knee Tucks",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Skaters",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Right Butt Blaster",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Plank Jacks",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Left Butt Blaster",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Dips",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Fast Feet",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Ugi Squeeze",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Forward Lunge + Twist",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Mountain Climb + Hip Thrust",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Hitchhiker",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Right Balancing Side Crunch",
+        "type" : "Core"
+      },
+      {
+        "name" : "Left Balancing Side Crunch",
+        "type" : "Core"
+      },
+      {
+        "name" : "Single Leg V-Up",
+        "type" : "Core"
+      }
+    ]
+  }

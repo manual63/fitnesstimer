@@ -1,0 +1,84 @@
+  {
+    "moves" : [
+      {
+        "name" : "Clocks",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Knee Ups",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "UGI Swing",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Alternating Side Lunge",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Skaters",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Reverse Curl",
+        "type" : "Core"
+      },
+      {
+        "name" : "Ugi Twist",
+        "type" : "Core"
+      },
+      {
+        "name" : "Plank Leg Lift",
+        "type" : "Core"
+      },
+      {
+        "name" : "Tricep Dips",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Balancing Side Leg Lift",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Plank Mountain Climbers",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Bent Over Twist",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Deadlift",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Jump Squat + Shoulder Press",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Plie Squat Bicep Curl",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Soccer Throw Ins",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Hamstring Curl",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Accordion Crunch",
+        "type" : "Core"
+      },
+      {
+        "name" : "R Side Plank",
+        "type" : "Core"
+      },
+      {
+        "name" : "L Side Plank",
+        "type" : "Core"
+      }
+    ]
+  }

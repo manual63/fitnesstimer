@@ -1,0 +1,84 @@
+  {
+    "moves" : [
+      {
+        "name" : "Toe Tap",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "UGI Roll",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "UGI Swing",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Skaters",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Cross Mountain Climbers",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Single Leg V Up",
+        "type" : "Core"
+      },
+      {
+        "name" : "Decline Push-Ups",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Hamstring Curl",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Tricep Dips",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Squat Shoulder Press",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Forward Lunge with B Curl",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Woodchops L/R",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Situp Press",
+        "type" : "Core"
+      },
+      {
+        "name" : "Plank Leg Lift",
+        "type" : "Core"
+      },
+      {
+        "name" : "Balancing Hip Crusher R",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Balancing Hip Crusher L",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Knee Tucks",
+        "type" : "Core"
+      },
+      {
+        "name" : "Leg Extention",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Lat Pullover",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Pikes on Ball",
+        "type" : "Core"
+      }
+    ]
+  }
