@@ -1,0 +1,124 @@
+  {
+    "moves" : [
+      {
+        "name" : "Alternating Side Lunge",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Plank",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Toe Tap",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Ugi Roll",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Skaters",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Jack Squat",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Clocks",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Ugi Swing",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Mountain Climbers",
+        "type" : "Core"
+      },
+      {
+        "name" : "Round the ugi",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Jump N Twist",
+        "type" : "Strength"
+      },
+      {
+        "name" : "90/90 Split Leg Lunge",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Knee Tucks",
+        "type" : "Core"
+      },
+      {
+        "name" : "V-Ups",
+        "type" : "Core"
+      },
+      {
+        "name" : "Reverse Curl",
+        "type" : "Core"
+      },
+      {
+        "name" : "UGI Twist",
+        "type" : "Core"
+      },
+      {
+        "name" : "Pikes",
+        "type" : "Core"
+      },
+      {
+        "name" : "Ugi Crunch",
+        "type" : "Core"
+      },
+      {
+        "name" : "Plank",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Ugi Roll",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Jack Squat",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Ugi Swing",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Round the Ugi",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "90/90 Split Leg Lunge",
+        "type" : "Strength"
+      },
+      {
+        "name" : "V-Ups",
+        "type" : "Core"
+      },
+      {
+        "name" : "Ugi Twist",
+        "type" : "Core"
+      },
+      {
+        "name" : "Ugi Crunch",
+        "type" : "Core"
+      },
+      {
+        "name" : "Cooldown",
+        "type" : "Cooldown"
+      },
+      {
+        "name" : "Cooldown",
+        "type" : "Cooldown"
+      },
+      {
+        "name" : "Cooldown",
+        "type" : "Cooldown"
+      }
+    ]
+  }

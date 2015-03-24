@@ -1,0 +1,124 @@
+  {
+    "moves" : [
+      {
+        "name" : "Alternating Side Lunge",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Ugi Swing",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Knee-Ups",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Clocks (30 sec/side)",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Ugi Roll",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Plank Jacks",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Ugi Paddle",
+        "type" : "Core"
+      },
+      {
+        "name" : "Right Balancing",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Froggies",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Left Balancing",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Alternating Forward Lunge",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Alternating Shoulder",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Jumping Ugi Twist",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Round the Ugi",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Caterpillar Ugi",
+        "type" : "Core"
+      },
+      {
+        "name" : "Balancing V-Twist",
+        "type" : "Core"
+      },
+      {
+        "name" : "Ugi Squeeze",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Pullover (with hip)",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Plank Slalom",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Right Balancing Hip",
+        "type" : "Core"
+      },
+      {
+        "name" : "Left Balancing Hip",
+        "type" : "Core"
+      },
+      {
+        "name" : "Right Lunge on Ball",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Left Lunge on Ball",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Toe Taps",
+        "type" : "Cardio"
+      },
+      {
+        "name" : "Woodchops (30 sec/side)",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Right Side Plank",
+        "type" : "Core"
+      },
+      {
+        "name" : "Left Side Plank",
+        "type" : "Core"
+      },
+      {
+        "name" : "Straddle Side Stretch",
+        "type" : "Stretch"
+      },
+      {
+        "name" : "Chest Stretch",
+        "type" : "Stretch"
+      },
+      {
+        "name" : "Child’s Pose",
+        "type" : "Stretch"
+      }
+    ]
+  }
