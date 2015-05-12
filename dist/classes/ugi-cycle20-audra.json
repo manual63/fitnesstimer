@@ -1,0 +1,86 @@
+
+  {
+  	"name" : "Audra UGI 20",
+    "moves" : [
+      {
+        "name" : "Knee Ups",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Alternating Side Lunges",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Clocks 30 Sec a Side",
+        "type" : "Warmup"
+      },
+      {
+        "name" : "Squat Shoulder Press",
+        "type" : "Strength"
+      },
+      {
+        "name" : "UGI Paddle",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Reverse Curl",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Tricep Dips",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Forward Lunge with B Curl",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Cross Mountain Climbers",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Seated Ugi Twist",
+        "type" : "Core"
+      },
+      {
+        "name" : "Knee Tucks",
+        "type" : "Core"
+      },
+      {
+        "name" : "Balancing Side Leg Circ R",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Balancing Side Leg Circ L",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Lat Pullover",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Right Side Plank",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Left Side Plank",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Hamstring Curls",
+        "type" : "Core"
+      },
+      {
+        "name" : "Ugi Tap Downs",
+        "type" : "Strength"
+      },
+      {
+        "name" : "Crunch + Chest Press",
+        "type" : "Core"
+      },
+      {
+        "name" : "Soccer Throw-ins",
+        "type" : "Strength"
+      }
+    ]
+  }
