@@ -1,8 +1,9 @@
 var gulp = require( 'gulp' ),
 less = require( 'gulp-less' ),
-uglify = require( 'gulp-uglifyjs' )
+concat = require( 'gulp-concat' ),
+uglify = require( 'gulp-uglifyjs' );
 
-gulp.task( 'default', [ 'less', 'move', 'uglify' ]);
+gulp.task( 'default', [ 'less', 'move', 'concat-main' ]);
 
 gulp.task( 'watch', function() {
 	gulp.watch( 'less/*less', [ 'less' ] );
@@ -26,12 +27,26 @@ var directories = [
 	'./js/vendor/**/*',
 	'./src/js/**/*.js',
 	'./templates/*.html',
-	'./index.html'
-]
+	'./index.html',
+	'./api/**/*'
+];
 
 gulp.task( 'move', function() {
 	gulp.src( directories, { base: './' })
 		.pipe( gulp.dest('dist/'));
+});
+
+var mainFiles = [
+	'./src/js/models/*.js',
+	'./src/js/routers/*js',
+	'./src/js/views/*.js',
+	'./src/js/main.js'
+];
+
+gulp.task( 'concat-main', function() {
+	return gulp.src( mainFiles )
+    .pipe(concat('main.js'))
+    .pipe(gulp.dest('dist/js'));
 });
 
 gulp.task('uglify', function() {
@@ -39,5 +54,5 @@ gulp.task('uglify', function() {
     .pipe(uglify('main.min.js', {
       outSourceMap: true
     }))
-    .pipe(gulp.dest('dist/js'))
+    .pipe(gulp.dest('dist/js'));
 });

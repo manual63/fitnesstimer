@@ -1,3 +1,34 @@
+var FitnessClass = Backbone.Model.extend({
+  urlRoot: 'http://www.fitnesstimerapi.dev/classes/fitnessclass',
+  url: function() {
+  	return this.urlRoot;
+  },
+  defaults: {
+  	userId: '',
+    classId: '',
+   	name: '' 
+  } ,
+  initialize: function() {
+  }
+});
+var FitnessClasses = Backbone.Model.extend({
+  urlRoot: 'http://www.fitnesstimerapi.dev/classes/getfitnessclasses',
+  url: function() {
+    var userId;
+    if( $.cookie( "userId") ) {
+      userId = $.cookie( "userId");
+    }
+    else {
+      app_router.navigate('home', {trigger:true});
+    }
+
+  	return this.urlRoot + '/' + userId;
+  },
+  defaults: {},
+  initialize: function() {
+      
+  }
+});
 var Home = Backbone.Model.extend({
   urlRoot: 'data/home.json',
   defaults: {
@@ -8,6 +39,34 @@ var Home = Backbone.Model.extend({
   }
 });
 
+
+var Login = Backbone.Model.extend({
+  urlRoot: 'http://www.fitnesstimerapi.dev/user/login',
+  defaults: {
+    emailAddress: '',
+    password: ''
+  },
+  initialize: function() {
+      console.log('initialize login');
+  },
+  validate: function( attr ) {
+    if( !attr.emailAddress ) {
+      return 'Invalid Email Address.';
+    }
+    else if( !attr.password ) {
+      return 'Invalid Password.';
+    }
+  }
+});
+var Register = Backbone.Model.extend({
+  urlRoot: 'data/register.json',
+  defaults: {
+    title: '',
+    description: '' 
+  } ,
+  initialize: function() {
+  }
+});
 var Timer = Backbone.Model.extend({
   urlRoot: 'data/timer.json',
   defaults: {
@@ -20,6 +79,218 @@ var Timer = Backbone.Model.extend({
 });
 
 
+
+var User = Backbone.Model.extend({
+  urlRoot: 'http://www.fitnesstimerapi.dev/user/user',
+  url: function() {
+    var userId;
+    if( $.cookie( "userId") ) {
+      userId = $.cookie( "userId");
+    }
+    else {
+      userId = $.getUrlVar('id');
+    }
+
+  	return this.urlRoot + '/' + userId;
+  },
+  defaults: {
+    firstName: '',
+    lastName: '',
+    emailAddress: '',
+    password: ''
+  } ,
+  initialize: function() {
+      
+  }
+});
+var Users = Backbone.Model.extend({
+  urlRoot: 'http://www.fitnesstimerapi.dev/user/users',
+  url: function() {
+  	var base = this.urlRoot || (this.collection && this.collection.url) || "/";
+  	if( this.isNew() ) return base;
+
+  	return base + '/' + this.id;
+  },
+  defaults: {},
+  initialize: function() {
+      
+  }
+});
+var Welcome = Backbone.Model.extend({
+  defaults: {
+    firstName: '',
+    lastName: '',
+    emailAddress: '',
+    password: ''
+  } ,
+  initialize: function() {
+      
+  }
+});
+var AppRouter = Backbone.Router.extend({ 
+  routes: { 
+    "timer*params": "timerView",
+    "register*params": "registerView",
+    "users*params": "usersView",
+    "user*params": "userView",
+    "login*params": "loginView",
+    "welcome*params": "welcomeView",
+    "logout": "endSession",
+    "createclass*params": "createClassView",
+    "getclasses*params": "getClassesView",
+    "*params":"homeView"
+  },
+  timerView: function(params) {
+    Global.functions.clearView();
+    var timer = new Timer();
+    timer.fetch({
+      success: function (timer) {
+        var view = new TimerView();
+        view.render(timer);
+      }
+    });	
+  },
+  registerView: function(params) {
+    Global.functions.clearView();
+    var register = new Register();
+    register.fetch({
+      success: function (register) {
+        var view = new RegisterView();
+        view.render(register);
+      }
+    }); 
+  },
+  usersView: function(params) {
+    Global.functions.clearView();
+    var users = new Users();
+    users.fetch({
+      success: function (users) {
+        var view = new UsersView();
+        view.render(users);
+      }
+    });
+  },
+  userView: function(params) {
+    Global.functions.clearView();
+    var user = new User();
+    user.fetch({
+      success: function (user) {
+        var view = new UserView();
+        view.render(user);
+      }
+    });
+  },
+  loginView: function(params) {
+    Global.functions.clearView();
+    if($.cookie( 'userId' )) {
+      app_router.navigate('welcome', {trigger:true});
+    } else {
+      var login = new Login();
+      login.fetch({
+        success: function (login) {
+          var view = new LoginView();
+          view.render(login);
+        }
+      });     
+    }
+  },
+  welcomeView: function(params) {
+    Global.functions.clearView();
+    var user = new User();
+    user.fetch({
+      success: function (user) {
+        var view = new WelcomeView();
+        view.render(user);
+      }
+    });
+  },
+  endSession: function() {
+    $.removeCookie("userId");
+    app_router.navigate('home', {trigger:true});
+  },
+  createClassView: function(params) {
+    Global.functions.clearView();
+    var fitnessClass = new FitnessClass();
+    fitnessClass.fetch({
+      success: function (fitnessClass) {
+        var view = new CreateClassView();
+        view.render(fitnessClass);
+      }
+    });
+  },
+  getClassesView: function(params) {
+    Global.functions.clearView();
+    var fitnessClasses = new FitnessClasses();
+    fitnessClasses.fetch({
+      success: function (fitnessClasses) {
+        var view = new GetClassesView();
+        view.render(fitnessClasses);
+      }
+    });
+  },
+  homeView: function(params) {
+    Global.functions.clearView();
+    var home = new Home();
+    home.fetch({
+      success: function (home) {
+        var view = new HomeView();
+        view.render(home);
+      }
+    });	   
+  }
+});
+var CreateClassView = Backbone.View.extend({
+    el: '#content',
+    events: {
+        "submit form": "createClass",
+        "change input": "changed"
+    },
+    initialize: function () {
+        _.bindAll(this, "changed");
+        this.model = new FitnessClass();
+        this.model.set({
+            userId : $.cookie('userId')
+        });
+    },
+    render: function (){
+        var html = createClassTemplate();
+        this.$el.html(html);
+    },
+    changed: function( e ) {
+        var changed = e.currentTarget;
+        var value = $(e.currentTarget).val();
+        var obj = {};
+        obj[changed.id] = value;
+        this.model.set(obj);
+    },
+    createClass: function( e ) {
+        e.preventDefault();
+        this.model.save({}, {
+            success: function( model, response, options ) {
+
+            },
+            error: function( model, xhr, options ) {
+
+            }
+        });
+        app_router.navigate('createclass', {trigger:true});
+    }
+});
+var GetClassesView = Backbone.View.extend({
+    el: '#content',
+    events: {
+        "submit form": "createClass",
+        "change input": "changed"
+    },
+    initialize: function () {
+       // _.bindAll(this, "changed");
+       // this.model = new FitnessClass();
+    },
+    render: function ( fitnessClasses ){
+        var html = getClassesTemplate(fitnessClasses.toJSON());
+        this.$el.html(html);
+    }
+});
 var HomeView = Backbone.View.extend({
     el: '#content',
     events: {
@@ -33,10 +304,71 @@ var HomeView = Backbone.View.extend({
         app_router.navigate('timer', {trigger:true});
     }
 });
+var LoginView = Backbone.View.extend({
+    el: '#content',
+    events: {
+        "submit form": "login",
+        "change input": "changed"
+    },
+    initialize: function () {
+        _.bindAll(this, "changed");
+        this.model = new Login();
+    },
+    render: function (login){
+        var html = loginTemplate(login.toJSON());
+        this.$el.html(html);
+    },
+    changed: function( e ) {
+        var changed = e.currentTarget;
+        var value = $(e.currentTarget).val();
+        var obj = {};
+        obj[changed.id] = value;
+        this.model.set(obj);
+    },
+    login: function( e ) {
+        e.preventDefault();
+        this.model.save({}, {
+            success: function( model, response, options ) {
+                $.cookie( 'userId', response.id );
+                welcome = new Welcome( response );
+                Global.functions.clearView();
 
+                var view = new WelcomeView();
+                view.render( welcome );
+                Global.loggedInUser = welcome;
+
+                window.history.pushState( '', '', '/#welcome' );
+            },
+            error: function( model, xhr, options ) {
+                alert( 'error' );
+            }
+        });
+    }
+});
+var RegisterView = Backbone.View.extend({
+    el: '#content',
+    events: {
+        'click button': 'createUser'
+    },
+    render: function (register){
+        var html = registerTemplate(register.toJSON());
+        this.$el.html(html);
+    },
+    createUser: function( event ) {
+        event.preventDefault();
+        var arr = $('form').serializeArray();
+
+        $.post('http://www.fitnesstimerapi.dev/user/save', JSON.stringify( arr ), function( data ) {
+            console.log( data );
+            var appRouter = new AppRouter();
+            appRouter.homeView();
+        });
+
+        //app_router.navigate('timer', {trigger:true});
+    }
+});
 var TimerView = Backbone.View.extend({
-    startTime: 19,
-    timerActive: false,
+    startTime: 1,
     data: null,
     startIndex: 0,
     timerInterval: null,
@@ -59,21 +391,16 @@ var TimerView = Backbone.View.extend({
             console.log( data );
             that.data = data;
             that.showMove( that.data.moves[0].type, that.data.moves[0].name);
+            
           });
         }
         else $( '.next-move' ).html( 'No Format Selected' );
     },
     preTimer: function() {
         var that = this;
-        if( !this.timerActive ) {
-          this.timerInterval = setInterval( function() {
-              that.updatePretimer();
-          }, 1000 );
-          this.timerActive = true;
-        }
-        else {
-          //Do nothing
-        }
+        this.timerInterval = setInterval( function() {
+            that.updatePretimer();
+        }, 1000 );
     },
     startTimer: function() {
         var that = this;
@@ -83,12 +410,11 @@ var TimerView = Backbone.View.extend({
     },
     stopTimer: function() {
         clearInterval( this.timerInterval );
-        this.timerActive = false;
     },
     nextMove: function() {
         that = this;
-        $( '.timer' ).html( this.startTime-- );
-        if( this.startTime === 9 ) {
+        $( '.timer' ).html( this.startTime++ );
+        if( this.startTime === 51 ) {
           that.startIndex++;
           if( that.startIndex < that.data.moves.length ) {
             that.showMove( that.data.moves[ that.startIndex ].type, that.data.moves[ that.startIndex ].name);
@@ -96,16 +422,16 @@ var TimerView = Backbone.View.extend({
           }
         }
 
-        if( this.startTime === 0 ) {
-          that.startTime = 60;
+        if( this.startTime === 61 ) {
+          that.startTime = 1;
           $( '.next-move' ).removeClass( 'blink_me' );
         }
     },
     updatePretimer: function() {
         var that = this;
-        $( '.timer' ).html( this.startTime-- );
-        if( this.startTime < 0 ) {
-          that.startTime = 60;
+        $( '.timer' ).html( this.startTime++ );
+        if( this.startTime > 21 ) {
+          that.startTime = 1;
           clearInterval( that.timerInterval );
           $( '.timer' ).html( that.startTime );
           that.startTimer();
@@ -134,30 +460,200 @@ var TimerView = Backbone.View.extend({
      }
 });
 
-var AppRouter = Backbone.Router.extend({ 
-  routes: { 
-    "timer*params": "timerView",
-    "*params":"homeView"
-  },
-  timerView: function(params) {
-    Global.functions.clearView();
-    var timer = new Timer();
-    timer.fetch({
-      success: function (timer) {
-        var view = new TimerView();
-        view.render(timer);
+
+var UserView = Backbone.View.extend({
+    el: '#content',
+    events: {
+        "click #timerView": "goToTimer"
+    },
+    render: function (user){
+        var html = userTemplate(user.toJSON());
+        this.$el.html(html);
+    },
+    goToTimer: function() {
+        app_router.navigate('user', {trigger:true});
+    }
+});
+var UsersView = Backbone.View.extend({
+    el: '#content',
+    events: {
+        "click #deleteUser": "deleteUser"
+    },
+    render: function (users){
+        var html = usersTemplate(users.toJSON());
+        this.$el.html(html);
+    },
+    deleteUser: function( e ) {
+        var userId = $( e.currentTarget ).data('user-id');
+        alert('Are you sure you want to permanently remove user with id of ' + userId + '?');
+        $.ajax({
+            type: 'DELETE',
+            url: 'http://www.fitnesstimerapi.dev/user/deleteuser/' + userId,
+            contentType: "application/json",
+            xhrFields: {withCredentials: true },
+            dataType: "text",
+            data: {
+                id : userId
+            },
+            success: function() {
+                var appRouter = new AppRouter();
+                appRouter.usersView();
+            },
+            error: function( err ) {
+                console.log( "ERROR: ", err );
+            }
+        });
+    }
+});
+
+var WelcomeView = Backbone.View.extend({
+    el: '#content',
+    events: {
+        "click #createClass": "createClass",
+        "click #chooseClass": "showClasses"
+    },
+    render: function ( welcome ){
+        var html = welcomeTemplate( welcome.toJSON() );
+        this.$el.html( html );
+    },
+    createClass: function() {
+        app_router.navigate( 'createclass', { trigger:true } );
+    },
+    showClasses: function() {
+        app_router.navigate( 'getclasses', { trigger:true } );
+    }
+});
+/*!
+ * jQuery Cookie Plugin v1.4.1
+ * https://github.com/carhartl/jquery-cookie
+ *
+ * Copyright 2006, 2014 Klaus Hartl
+ * Released under the MIT license
+ */
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD (Register as an anonymous module)
+    define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    // Node/CommonJS
+    module.exports = factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+}(function ($) {
+
+  var pluses = /\+/g;
+
+  function encode(s) {
+    return config.raw ? s : encodeURIComponent(s);
+  }
+
+  function decode(s) {
+    return config.raw ? s : decodeURIComponent(s);
+  }
+
+  function stringifyCookieValue(value) {
+    return encode(config.json ? JSON.stringify(value) : String(value));
+  }
+
+  function parseCookieValue(s) {
+    if (s.indexOf('"') === 0) {
+      // This is a quoted cookie as according to RFC2068, unescape...
+      s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+    }
+
+    try {
+      // Replace server-side written pluses with spaces.
+      // If we can't decode the cookie, ignore it, it's unusable.
+      // If we can't parse the cookie, ignore it, it's unusable.
+      s = decodeURIComponent(s.replace(pluses, ' '));
+      return config.json ? JSON.parse(s) : s;
+    } catch(e) {}
+  }
+
+  function read(s, converter) {
+    var value = config.raw ? s : parseCookieValue(s);
+    return $.isFunction(converter) ? converter(value) : value;
+  }
+
+  var config = $.cookie = function (key, value, options) {
+
+    // Write
+
+    if (arguments.length > 1 && !$.isFunction(value)) {
+      options = $.extend({}, config.defaults, options);
+
+      if (typeof options.expires === 'number') {
+        var days = options.expires, t = options.expires = new Date();
+        t.setMilliseconds(t.getMilliseconds() + days * 864e+5);
       }
-    });	
-  },
-  homeView: function(params) {
-    Global.functions.clearView();
-    var home = new Home();
-    home.fetch({
-      success: function (home) {
-        var view = new HomeView();
-        view.render(home);
+
+      return (document.cookie = [
+        encode(key), '=', stringifyCookieValue(value),
+        options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+        options.path    ? '; path=' + options.path : '',
+        options.domain  ? '; domain=' + options.domain : '',
+        options.secure  ? '; secure' : ''
+      ].join(''));
+    }
+
+    // Read
+
+    var result = key ? undefined : {},
+      // To prevent the for loop in the first place assign an empty array
+      // in case there are no cookies at all. Also prevents odd result when
+      // calling $.cookie().
+      cookies = document.cookie ? document.cookie.split('; ') : [],
+      i = 0,
+      l = cookies.length;
+
+    for (; i < l; i++) {
+      var parts = cookies[i].split('='),
+        name = decode(parts.shift()),
+        cookie = parts.join('=');
+
+      if (key === name) {
+        // If second argument (value) is a function it's a converter...
+        result = read(cookie, value);
+        break;
       }
-    });	   
+
+      // Prevent storing a cookie that we couldn't decode.
+      if (!key && (cookie = read(cookie)) !== undefined) {
+        result[name] = cookie;
+      }
+    }
+
+    return result;
+  };
+
+  config.defaults = {};
+
+  $.removeCookie = function (key, options) {
+    // Must not alter options, thus extending a fresh object...
+    $.cookie(key, '', $.extend({}, options, { expires: -1 }));
+    return !$.cookie(key);
+  };
+
+}));
+
+// End jquery-cookie
+
+$.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return $.getUrlVars()[name];
   }
 });
 
@@ -182,17 +678,46 @@ var Global = {
         });
         return html;
     }
-  }
+  },
+  loggedInUser: {}
 };
 
 var homeTemplate = null;
 var timerTemplate = null;
+var registerTemplate = null;
+var usersTemplate = null;
+var userTemplate = null;
+var loginTemplate = null;
+var welcomeTemplate = null;
+var createClassTemplate = null;
+var getClassesTemplate = null;
 $(function() {
   var source   = Global.functions.getTemplate( 'home.html' );
   homeTemplate = Handlebars.compile( source );
 
   var source   = Global.functions.getTemplate( 'timer.html' );
   timerTemplate = Handlebars.compile( source );
+
+  var source   = Global.functions.getTemplate( 'register.html' );
+  registerTemplate = Handlebars.compile( source );
+
+  var source   = Global.functions.getTemplate( 'users.html' );
+  usersTemplate = Handlebars.compile( source );
+
+  var source   = Global.functions.getTemplate( 'user.html' );
+  userTemplate = Handlebars.compile( source );
+
+  var source   = Global.functions.getTemplate( 'login.html' );
+  loginTemplate = Handlebars.compile( source );
+
+  var source   = Global.functions.getTemplate( 'welcome.html' );
+  welcomeTemplate = Handlebars.compile( source );
+
+  var source   = Global.functions.getTemplate( 'createclass.html' );
+  createClassTemplate = Handlebars.compile( source );
+
+  var source   = Global.functions.getTemplate( 'showclasses.html' );
+  getClassesTemplate = Handlebars.compile( source );
 });
 
 // Initiate the router

@@ -4,3 +4,4 @@ HTML5Application/nbproject/
 HTML5Application/public_html/node_modules/
 HTML5Application/.htaccess
 test/
+node_modules
