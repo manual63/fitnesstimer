@@ -99,6 +99,16 @@ var AppRouter = Backbone.Router.extend({
       }
     });
   },
+  getMovesView: function(params) {
+    Global.functions.clearView();
+    var moves = new Moves();
+    moves.fetch({
+      success: function (moves) {
+        var view = new GetMovesView();
+        view.render(moves);
+      }
+    });
+  },
   homeView: function(params) {
     Global.functions.clearView();
     var home = new Home();
