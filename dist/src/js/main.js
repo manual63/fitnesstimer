@@ -166,6 +166,7 @@ var loginTemplate = null;
 var welcomeTemplate = null;
 var createClassTemplate = null;
 var getClassesTemplate = null;
+var movesTemplate = null;
 $(function() {
   var source   = Global.functions.getTemplate( 'home.html' );
   homeTemplate = Handlebars.compile( source );
@@ -193,6 +194,9 @@ $(function() {
 
   var source   = Global.functions.getTemplate( 'showclasses.html' );
   getClassesTemplate = Handlebars.compile( source );
+
+  var source   = Global.functions.getTemplate( 'moves.html' );
+  movesTemplate = Handlebars.compile( source );
 });
 
 // Initiate the router

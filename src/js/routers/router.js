@@ -9,6 +9,7 @@ var AppRouter = Backbone.Router.extend({
     "logout": "endSession",
     "createclass*params": "createClassView",
     "getclasses*params": "getClassesView",
+    "getmoves*params": "getMovesView",
     "*params":"homeView"
   },
   timerView: function(params) {
@@ -104,7 +105,7 @@ var AppRouter = Backbone.Router.extend({
     var moves = new Moves();
     moves.fetch({
       success: function (moves) {
-        var view = new GetMovesView();
+        var view = new MovesView();
         view.render(moves);
       }
     });

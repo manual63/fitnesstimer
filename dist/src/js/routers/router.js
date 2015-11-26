@@ -9,6 +9,7 @@ var AppRouter = Backbone.Router.extend({
     "logout": "endSession",
     "createclass*params": "createClassView",
     "getclasses*params": "getClassesView",
+    "getmoves*params": "getMovesView",
     "*params":"homeView"
   },
   timerView: function(params) {
@@ -96,6 +97,16 @@ var AppRouter = Backbone.Router.extend({
       success: function (fitnessClasses) {
         var view = new GetClassesView();
         view.render(fitnessClasses);
+      }
+    });
+  },
+  getMovesView: function(params) {
+    Global.functions.clearView();
+    var moves = new Moves();
+    moves.fetch({
+      success: function (moves) {
+        var view = new MovesView();
+        view.render(moves);
       }
     });
   },
