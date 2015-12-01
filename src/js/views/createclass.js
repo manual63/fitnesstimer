@@ -15,6 +15,11 @@ var CreateClassView = Backbone.View.extend({
         var html = createClassTemplate();
         this.$el.html(html);
     },
+    removeView: function() {
+      this.$el.empty().off(); /* off to unbind the events */
+      this.stopListening();
+      return this;
+    },
     changed: function( e ) {
         var changed = e.currentTarget;
         var value = $(e.currentTarget).val();
@@ -23,15 +28,16 @@ var CreateClassView = Backbone.View.extend({
         this.model.set(obj);
     },
     createClass: function( e ) {
+        var _this = this;
         e.preventDefault();
         this.model.save({}, {
             success: function( model, response, options ) {
-
+                _this.removeView();
+                app_router.navigate('getclasses', {trigger:true});
             },
             error: function( model, xhr, options ) {
-
+                alert('Error');
             }
         });
-        app_router.navigate('createclass', {trigger:true});
     }
 });

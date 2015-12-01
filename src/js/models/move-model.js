@@ -1,15 +1,15 @@
-var move = Backbone.Model.extend({
-  urlRoot: 'http://www.fitnesstimerapi.dev/classes/getclassmove',
+var Move = Backbone.Model.extend({
+  urlRoot: 'http://www.fitnesstimerapi.dev/classes/classmove',
   url: function() {
-    var moveId = $.getUrlVar('id');
-
-    return this.urlRoot + '/' + moveId;
+    return this.urlRoot;
   },
   defaults: {
   	id: '',
     name: '',
-   	type: '',
-    order: '' 
+   	typeId: '',
+    order: '',
+    classId: '',
+    userId: '' 
   } ,
   initialize: function() {
   }

@@ -5,39 +5,35 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<table class="table table-striped table-bordered">
-			<thead>
-				<tr>
-					<th>Move</th>
-					<th>Type</th>
-					<th></th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-			{{#each classMoves}}
-				<tr>
-					<td>{{name}}</td>
-					<td>{{type}}</td>
-					<td><a href="#">Edit</a></td>
-					<td><button class="btn-sm">Remove</button></td>
-				</tr>
-			{{/each}}
-				<tr>
-					<td>
-						<input type="text" id="moveName" class="form-control">
-					</td>
-					<td>
-						<select id="moveType" class="form-control">
-						</select>
-					</td>
-					<td>
-
-					</td>
-					<td>
-						<button class="btn-sm" id="addMove">Add Move</button>
-					</td>
-			</tbody>
-		</table>
+		<div class="row">
+			<div class="col-md-12">
+				<ul id="sortable">
+					{{#each classMoves}}
+					<li class="ui-state-default" data-sort-order="{{order}}">
+						<span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+						<button class="btn-sm remove" data-move-id="{{id}}">Remove</button>
+						{{name}} - {{type}}
+					</li>
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-5">
+				<input type="text" id="moveName" class="form-control">
+			</div>
+			<div class="col-md-5">
+				<select id="moveType" class="form-control">
+				</select>
+			</div>
+			<div class="col-md-2">
+				<button class="btn-sm" id="addMove">Add Move</button>
+			</div>
+		</div>
+		<style>
+			#sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+			#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; }
+			#sortable li span { position: absolute; margin-left: -1.3em; }
+		</style>
 	</div>
 </div>

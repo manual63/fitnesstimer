@@ -6,7 +6,7 @@ var Moves = Backbone.Model.extend({
     return this.urlRoot + '/' + classId;
   },
   defaults: {
-    moves : []
+    classMoves : []
   } ,
   initialize: function() {
   }

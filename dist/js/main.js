@@ -29,6 +29,21 @@ var FitnessClasses = Backbone.Model.extend({
       
   }
 });
+var ClasstypeModel = Backbone.Model.extend({
+	urlRoot: 'http://www.fitnesstimerapi.dev/classes/addclassmove',
+	url: function() {
+		var moveid = $.getUrlVar('moveid');
+
+		return this.urlRoot + '/' + moveId;
+	},
+	defaults: {
+		typeId: '',
+		name: ''
+	},
+	initialize: function() {
+		
+	}
+});
 var Home = Backbone.Model.extend({
   urlRoot: 'data/home.json',
   defaults: {
@@ -58,18 +73,18 @@ var Login = Backbone.Model.extend({
     }
   }
 });
-var move = Backbone.Model.extend({
-  urlRoot: 'http://www.fitnesstimerapi.dev/classes/getclassmove',
+var Move = Backbone.Model.extend({
+  urlRoot: 'http://www.fitnesstimerapi.dev/classes/classmove',
   url: function() {
-    var moveId = $.getUrlVar('id');
-
-    return this.urlRoot + '/' + moveId;
+    return this.urlRoot;
   },
   defaults: {
   	id: '',
     name: '',
-   	type: '',
-    order: '' 
+   	typeId: '',
+    order: '',
+    classId: '',
+    userId: '' 
   } ,
   initialize: function() {
   }
@@ -82,7 +97,7 @@ var Moves = Backbone.Model.extend({
     return this.urlRoot + '/' + classId;
   },
   defaults: {
-    moves : []
+    classMoves : []
   } ,
   initialize: function() {
   }
@@ -175,8 +190,8 @@ var AppRouter = Backbone.Router.extend({
     var timer = new Timer();
     timer.fetch({
       success: function (timer) {
-        var view = new TimerView();
-        view.render(timer);
+        var timerView = new TimerView();
+        timerView.render(timer);
       }
     });	
   },
@@ -185,8 +200,8 @@ var AppRouter = Backbone.Router.extend({
     var register = new Register();
     register.fetch({
       success: function (register) {
-        var view = new RegisterView();
-        view.render(register);
+        var registerView = new RegisterView();
+        registerView.render(register);
       }
     }); 
   },
@@ -195,8 +210,8 @@ var AppRouter = Backbone.Router.extend({
     var users = new Users();
     users.fetch({
       success: function (users) {
-        var view = new UsersView();
-        view.render(users);
+        var usersView = new UsersView();
+        usersView.render(users);
       }
     });
   },
@@ -205,8 +220,8 @@ var AppRouter = Backbone.Router.extend({
     var user = new User();
     user.fetch({
       success: function (user) {
-        var view = new UserView();
-        view.render(user);
+        var userView = new UserView();
+        userView.render(user);
       }
     });
   },
@@ -218,8 +233,8 @@ var AppRouter = Backbone.Router.extend({
       var login = new Login();
       login.fetch({
         success: function (login) {
-          var view = new LoginView();
-          view.render(login);
+          var loginView = new LoginView();
+          loginView.render(login);
         }
       });     
     }
@@ -229,8 +244,8 @@ var AppRouter = Backbone.Router.extend({
     var user = new User();
     user.fetch({
       success: function (user) {
-        var view = new WelcomeView();
-        view.render(user);
+        var welcomeView = new WelcomeView();
+        welcomeView.render(user);
       }
     });
   },
@@ -243,8 +258,8 @@ var AppRouter = Backbone.Router.extend({
     var fitnessClass = new FitnessClass();
     fitnessClass.fetch({
       success: function (fitnessClass) {
-        var view = new CreateClassView();
-        view.render(fitnessClass);
+        var createClassView = new CreateClassView();
+        createClassView.render(fitnessClass);
       }
     });
   },
@@ -253,8 +268,8 @@ var AppRouter = Backbone.Router.extend({
     var fitnessClasses = new FitnessClasses();
     fitnessClasses.fetch({
       success: function (fitnessClasses) {
-        var view = new GetClassesView();
-        view.render(fitnessClasses);
+        var getClassView = new GetClassesView();
+        getClassView.render(fitnessClasses);
       }
     });
   },
@@ -263,8 +278,8 @@ var AppRouter = Backbone.Router.extend({
     var moves = new Moves();
     moves.fetch({
       success: function (moves) {
-        var view = new MovesView();
-        view.render(moves);
+        var movesView = new MovesView();
+        movesView.render(moves);
       }
     });
   },
@@ -273,8 +288,8 @@ var AppRouter = Backbone.Router.extend({
     var home = new Home();
     home.fetch({
       success: function (home) {
-        var view = new HomeView();
-        view.render(home);
+        var homeView = new HomeView();
+        homeView.render(home);
       }
     });	   
   }
@@ -296,6 +311,11 @@ var CreateClassView = Backbone.View.extend({
         var html = createClassTemplate();
         this.$el.html(html);
     },
+    removeView: function() {
+      this.$el.empty().off(); /* off to unbind the events */
+      this.stopListening();
+      return this;
+    },
     changed: function( e ) {
         var changed = e.currentTarget;
         var value = $(e.currentTarget).val();
@@ -304,16 +324,17 @@ var CreateClassView = Backbone.View.extend({
         this.model.set(obj);
     },
     createClass: function( e ) {
+        var _this = this;
         e.preventDefault();
         this.model.save({}, {
             success: function( model, response, options ) {
-
+                _this.removeView();
+                app_router.navigate('getclasses', {trigger:true});
             },
             error: function( model, xhr, options ) {
-
+                alert('Error');
             }
         });
-        app_router.navigate('createclass', {trigger:true});
     }
 });
 var GetClassesView = Backbone.View.extend({
@@ -388,25 +409,57 @@ var LoginView = Backbone.View.extend({
 var MovesView = Backbone.View.extend({
     el: '#content',
     events: {
-        "click #addMove": "createMove",
-        "change input": "changed"
+        'click #addMove': 'createMove',
+        'click .remove': 'removeClassMove'
     },
     initialize: function() {
-       // _.bindAll(this, "changed");
-       // this.model = new FitnessClass();
+
     },
     render: function( moves ) {
         var _this = this; //Access to view scope;
+        console.log( moves.get('classMoves') );
+        var sortedMoves = moves.get('classMoves').sort(function(a, b){return a.order-b.order});
+        moves.set(sortedMoves);
         var html = movesTemplate(moves.toJSON());
         this.$el.html(html).promise().done( function() {
             _this.updateMoveTypes();
+
+            $( "#sortable" ).sortable({
+                update: function(event, ui) {
+                    _this.reorderMoves();
+                }
+            });
+            $( "#sortable" ).disableSelection();
         });
     },
+    removeView: function() {
+      this.$el.empty().off(); /* off to unbind the events */
+      this.stopListening();
+      return this;
+    },
     createMove: function () {
+        var _this = this;
         var name = $('#moveName').val();
         var typeId = $('#moveType').val();
+        var moveModel = new Move();
 
-        alert( 'add ' + name + ' typeid ' + typeId );
+        moveModel.set({
+            name: name,
+            typeId: typeId,
+            order: $('table tr').length - 1,
+            classId: $.getUrlVar('classid'),
+            userId: $.cookie('userId') 
+        });
+
+        moveModel.save({}, {
+            success: function() {
+                Backbone.history.loadUrl(Backbone.history.fragment);
+                _this.removeView();
+            },
+            error: function() {
+                alert('Error');
+            }
+        });
     },
     updateMoveTypes: function() {
         $.getJSON('http://www.fitnesstimerapi.dev/classes/movetypes', function( data ) {
@@ -415,7 +468,48 @@ var MovesView = Backbone.View.extend({
                 $('#moveType').append( option );
             });
         });
-        
+    },
+    removeClassMove: function( e ) {
+        var _this = this;
+        $.ajax({
+            url: 'http://www.fitnesstimerapi.dev/classes/classmove/' + $.getUrlVar('classid') + '/' + $(e.currentTarget).data('move-id'),
+            type: 'DELETE',
+            success: function() {
+                Backbone.history.loadUrl(Backbone.history.fragment);
+                _this.removeView();
+            },
+            error: function() {
+                alert('Error');
+            }
+        });
+    },
+    reorderMoves: function() {
+        //alert('reorderMoves');
+        var liMoves = $('ul li');
+        var newOrder = new Array();
+        $.each( liMoves, function( key, value ) {
+            var order = key + 1;
+            $(value).attr('data-sort-order', order);
+            var moveId = $(value).find('.remove').attr('data-move-id');
+            console.log('moveId = ' + moveId);
+            newOrder.push({
+                moveId: moveId,
+                moveOrder: order
+            });
+        });
+
+        $.ajax({
+            url: 'http://www.fitnesstimerapi.dev/classes/moveorder/' + $.getUrlVar('classid'),
+            type: 'PUT',
+            data: JSON.stringify( newOrder ),
+            dataType: 'json',
+            success: function( data ) {
+                console.log('Success');
+            },
+            fail: function(xhr, text, err) {
+                console.log('Failed!');
+            }
+        });
     }
 });
 var RegisterView = Backbone.View.extend({

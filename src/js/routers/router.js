@@ -17,8 +17,8 @@ var AppRouter = Backbone.Router.extend({
     var timer = new Timer();
     timer.fetch({
       success: function (timer) {
-        var view = new TimerView();
-        view.render(timer);
+        var timerView = new TimerView();
+        timerView.render(timer);
       }
     });	
   },
@@ -27,8 +27,8 @@ var AppRouter = Backbone.Router.extend({
     var register = new Register();
     register.fetch({
       success: function (register) {
-        var view = new RegisterView();
-        view.render(register);
+        var registerView = new RegisterView();
+        registerView.render(register);
       }
     }); 
   },
@@ -37,8 +37,8 @@ var AppRouter = Backbone.Router.extend({
     var users = new Users();
     users.fetch({
       success: function (users) {
-        var view = new UsersView();
-        view.render(users);
+        var usersView = new UsersView();
+        usersView.render(users);
       }
     });
   },
@@ -47,8 +47,8 @@ var AppRouter = Backbone.Router.extend({
     var user = new User();
     user.fetch({
       success: function (user) {
-        var view = new UserView();
-        view.render(user);
+        var userView = new UserView();
+        userView.render(user);
       }
     });
   },
@@ -60,8 +60,8 @@ var AppRouter = Backbone.Router.extend({
       var login = new Login();
       login.fetch({
         success: function (login) {
-          var view = new LoginView();
-          view.render(login);
+          var loginView = new LoginView();
+          loginView.render(login);
         }
       });     
     }
@@ -71,8 +71,8 @@ var AppRouter = Backbone.Router.extend({
     var user = new User();
     user.fetch({
       success: function (user) {
-        var view = new WelcomeView();
-        view.render(user);
+        var welcomeView = new WelcomeView();
+        welcomeView.render(user);
       }
     });
   },
@@ -85,8 +85,8 @@ var AppRouter = Backbone.Router.extend({
     var fitnessClass = new FitnessClass();
     fitnessClass.fetch({
       success: function (fitnessClass) {
-        var view = new CreateClassView();
-        view.render(fitnessClass);
+        var createClassView = new CreateClassView();
+        createClassView.render(fitnessClass);
       }
     });
   },
@@ -95,8 +95,8 @@ var AppRouter = Backbone.Router.extend({
     var fitnessClasses = new FitnessClasses();
     fitnessClasses.fetch({
       success: function (fitnessClasses) {
-        var view = new GetClassesView();
-        view.render(fitnessClasses);
+        var getClassView = new GetClassesView();
+        getClassView.render(fitnessClasses);
       }
     });
   },
@@ -105,8 +105,8 @@ var AppRouter = Backbone.Router.extend({
     var moves = new Moves();
     moves.fetch({
       success: function (moves) {
-        var view = new MovesView();
-        view.render(moves);
+        var movesView = new MovesView();
+        movesView.render(moves);
       }
     });
   },
@@ -115,8 +115,8 @@ var AppRouter = Backbone.Router.extend({
     var home = new Home();
     home.fetch({
       success: function (home) {
-        var view = new HomeView();
-        view.render(home);
+        var homeView = new HomeView();
+        homeView.render(home);
       }
     });	   
   }
